@@ -8,5 +8,9 @@
 	},
 	"keywords": [],
 	"author": "yttiiz",
-	"license": "ISC"
+	"license": "ISC",
+  "devDependencies": {
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
+  }
 }

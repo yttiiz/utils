@@ -1,5 +1,8 @@
 import { DisplayDateType } from "./types.ts";
 
+/**
+ * Handles date formatting.
+ */
 export class DateHandler {
 	private static baseDateOpts: Intl.DateTimeFormatOptions = {
 		timeZone: "Europe/Paris",
@@ -25,7 +28,8 @@ export class DateHandler {
 	};
 
 	/**
-	 * Display date using `Intl` object, with french locale.
+	 * Display date using `Intl` object.
+	 * @param {DisplayDateType} details object details
 	 */
 	public static displayDate({ date, style = "long" }: DisplayDateType): string {
 		date = date ? date : new Date();

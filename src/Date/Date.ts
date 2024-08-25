@@ -24,6 +24,9 @@ export class DateHandler {
 		day: "numeric",
 	};
 
+	/**
+	 * Display date using `Intl` object, with french locale. 
+	 */
 	public static displayDate({ date, style = "long" }: DisplayDateType) {
 		date = date ? date : new Date();
 		return new Intl.DateTimeFormat(

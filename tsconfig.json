@@ -11,6 +11,6 @@
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "allowImportingTsExtensions": true,
-    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "types": ["jest"],
   }
 }

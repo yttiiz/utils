@@ -4,7 +4,7 @@
  * 
  * @example
  * ```ts
- * import { DateHandler } from "@yttiiz/utils"
+ * import { DateHandler } from "@yttiiz/utils";
  * 
  * DateHandler.displayDate({ date: 1724620845901 }); // 25 août 2024 à 23:20
  * ```

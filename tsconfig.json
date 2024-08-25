@@ -1,8 +1,7 @@
 {
 	"compilerOptions": {
     "target": "ESNext",
-    "module": "CommonJS",
-    "outDir": "./dist",
+    "module": "ESNext",
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

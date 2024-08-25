@@ -25,9 +25,9 @@ export class DateHandler {
 	};
 
 	/**
-	 * Display date using `Intl` object, with french locale. 
+	 * Display date using `Intl` object, with french locale.
 	 */
-	public static displayDate({ date, style = "long" }: DisplayDateType) {
+	public static displayDate({ date, style = "long" }: DisplayDateType): string {
 		date = date ? date : new Date();
 		return new Intl.DateTimeFormat(
 			"fr-FR",

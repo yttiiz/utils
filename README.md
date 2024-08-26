@@ -1,6 +1,6 @@
 # utils
 
-This is a **utility** toolkit created for my different projects. It's allow specific **classes**, out of the box, and **services** to handle basic tasks.
+This is an **utility** toolkit that provides out of the box **classes**, to handle common software development tasks.
 
 ## Installation
 

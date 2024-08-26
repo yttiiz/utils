@@ -1,6 +1,6 @@
 # utils
 
-This is a **utility** toolkit created for my differents projects. It's allow specific **classes**, out of the box, and **services** to handle basic tasks.
+This is a **utility** toolkit created for my different projects. It's allow specific **classes**, out of the box, and **services** to handle basic tasks.
 
 ## Installation
 
@@ -21,10 +21,11 @@ import * as utils from "@yttiiz/utils";
 or individualy (e.g) :
 
 ```ts
-import { DateHandler } from "@yttiiz/utils";
+import { DateFormatter } from "@yttiiz/utils";
 ```
 
 ## Example
+
 ```ts
-DateHandler.displayDate({ date: 1724620845901 }); // 25 août 2024 à 23:20
+DateFormatter.display({ date: 1724620845901 }); // 25 août 2024 à 23:20
 ```

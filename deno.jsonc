@@ -1,0 +1,20 @@
+{
+	"name": "@yttiiz/utils",
+	"license": "MIT",
+	"version": "0.1.3",
+	"exports": "./src/index.ts",
+	"lock": false,
+  "tasks": {
+    "fmt": "deno fmt"
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false,
+    "proseWrap": "preserve",
+    "include": ["src/"],
+    "exclude": ["README.md"]
+  }
+}

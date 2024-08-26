@@ -3,7 +3,7 @@ import { DisplayDateType } from "./types.ts";
 /**
  * Handles date formatting.
  */
-export class DateHandler {
+export class DateFormatter {
 	private static baseDateOpts: Intl.DateTimeFormatOptions = {
 		timeZone: "Europe/Paris",
 		year: "numeric",
@@ -31,15 +31,15 @@ export class DateHandler {
 	 * Display date using `Intl` object.
 	 * @param {DisplayDateType} details object details
 	 */
-	public static displayDate({ date, style = "long" }: DisplayDateType): string {
+	public static display({ date, style = "long" }: DisplayDateType): string {
 		date = date ? date : new Date();
 		return new Intl.DateTimeFormat(
 			"fr-FR",
 			style === "long"
-				? DateHandler.longDateOpts
+				? DateFormatter.longDateOpts
 				: style === "short"
-				? DateHandler.shortDateOpts
-				: DateHandler.baseDateOpts,
+				? DateFormatter.shortDateOpts
+				: DateFormatter.baseDateOpts,
 		)
 			.format(date)
 			.replace(",", " à");

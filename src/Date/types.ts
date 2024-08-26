@@ -1,7 +1,7 @@
 /**
- * `DateHandlere.displayDate` method types parameters.
+ * `DateFormatter.display` method types parameters.
  */
 export type DisplayDateType = {
-  date?: number | Date;
-  style?: "normal" | "long" | "short";
+	date?: number | Date;
+	style?: "normal" | "long" | "short";
 };

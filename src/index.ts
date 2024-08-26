@@ -10,3 +10,15 @@
  * ```
  */
 export * from "./Date/mod.ts";
+/**
+ * @module
+ * This module contains an handler `class` to handle age.
+ *
+ * @example
+ * ```ts
+ * import { Age } from "@yttiiz/utils";
+ *
+ * Age.get("2015-05-25"); // 9
+ * ```
+ */
+export * from "./Age/mod.ts";

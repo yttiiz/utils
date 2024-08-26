@@ -26,6 +26,6 @@ export class Age {
 		const age1 = new Date(firstDate).getTime();
 		const age2 = new Date(secondDate).getTime();
 
-		return age1 > age2 ? firstDate : age1 === age2 ? "same dates" : secondDate;
+		return age1 > age2 ? secondDate : age1 === age2 ? "same dates" : firstDate;
 	}
 }

@@ -1,5 +1,8 @@
-import { DateType } from "./mod.ts";
+import type { DateType } from "./mod.ts";
 
+/**
+ * Handles Age computing.
+ */
 export class Age {
 	/**
 	 * Returns age according to the given `date` parameter.

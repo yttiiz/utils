@@ -1,4 +1,4 @@
-import { DisplayDateType } from "./types.ts";
+import type { DisplayDateType } from "./types.ts";
 
 /**
  * Handles date formatting.

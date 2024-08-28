@@ -4,7 +4,12 @@
 	"version": "0.1.41",
 	"exports": "./src/index.ts",
 	"lock": false,
+	"imports": {
+		"@deps": "./src/deps.ts"
+	},
 	"tasks": {
+		"cache:reload": "deno cache --reload ./**/*.ts",
+		"test": "deno test --no-check --allow-read ./**/*.test.ts",
 		"fmt": "deno fmt"
 	},
 	"fmt": {

@@ -3,6 +3,6 @@ type Month = `${number}${number}`;
 type Day = `${number}${number}`;
 
 /**
- * Date format type. 
+ * Date format type.
  */
 export type DateType = `${Year}-${Month}-${Day}`;

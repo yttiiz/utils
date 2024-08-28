@@ -9,8 +9,9 @@ Deno.test({
 
 		const now = new Date();
 		const year = now.getFullYear() - 20;
-		const month =
-			now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : `0${now.getMonth() + 1}`;
+		const month = now.getMonth() + 1 >= 10
+			? now.getMonth() + 1
+			: `0${now.getMonth() + 1}`;
 		const date = now.getDate();
 		assertEquals(Age.get(`${year}-${month}-${date}` as DateType), 20);
 	},
@@ -24,8 +25,9 @@ Deno.test({
 
 		const now = new Date();
 		const year = now.getFullYear() - 20;
-		const month =
-			now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : `0${now.getMonth() + 1}`;
+		const month = now.getMonth() + 1 >= 10
+			? now.getMonth() + 1
+			: `0${now.getMonth() + 1}`;
 		const date = now.getDate();
 		assertEquals(
 			Age.getWithYear(`${year}-${month}-${date}` as DateType),

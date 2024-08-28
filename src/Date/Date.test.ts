@@ -24,7 +24,7 @@ Deno.test({
 Deno.test({
 	name: "DateFormatter.display (short) :",
 	fn() {
-    assertEquals(
+		assertEquals(
 			DateFormatter.display({ date: 1724620845901, style: "short" }),
 			"25/08/24",
 		);

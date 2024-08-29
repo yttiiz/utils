@@ -1,11 +1,16 @@
 {
 	"name": "@yttiiz/utils",
 	"license": "MIT",
-	"version": "0.1.50",
+	"version": "0.1.60",
 	"exports": "./src/index.ts",
 	"lock": false,
 	"imports": {
 		"@deps": "./src/deps.ts"
+	},
+	"publish": {
+		"exclude": [
+			"src/**/*.test.ts"
+		]
 	},
 	"tasks": {
 		"load": "deno cache src/deps.ts",

@@ -31,10 +31,12 @@ export class DateFormatter {
 	 * Display date using `Intl` object.
 	 * @param {DisplayDateType} details object details
 	 */
-	public static display({ date, style = "long" }: DisplayDateType): string {
+	public static display(
+		{ date, style = "long", locale = "fr-FR" }: DisplayDateType,
+	): string {
 		date = date ? date : new Date();
 		return new Intl.DateTimeFormat(
-			"fr-FR",
+			locale,
 			style === "long"
 				? DateFormatter.longDateOpts
 				: style === "short"
@@ -42,6 +44,6 @@ export class DateFormatter {
 				: DateFormatter.baseDateOpts,
 		)
 			.format(date)
-			.replace(",", " à");
+			.replace(",", locale === "fr-FR" ? " à" : ",");
 	}
 }

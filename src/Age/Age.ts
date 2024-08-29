@@ -33,10 +33,15 @@ export class Age {
 	public static whichIsOlder(
 		firstDate: DateType,
 		secondDate: DateType,
+		locale: "FR" | "EN" = "FR",
 	): string {
 		const age1 = new Date(firstDate).getTime();
 		const age2 = new Date(secondDate).getTime();
 
-		return age1 > age2 ? secondDate : age1 === age2 ? "same dates" : firstDate;
+		return age1 > age2
+			? secondDate
+			: age1 === age2
+			? (locale === "FR" ? "Les dates sont similaires." : "Dates are the same.")
+			: firstDate;
 	}
 }

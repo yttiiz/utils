@@ -40,6 +40,9 @@ Deno.test({
 	name: "Age.whichIsOlder: ",
 	fn() {
 		assertEquals(Age.whichIsOlder("1999-08-21", "2010-02-02"), "1999-08-21");
-		assertEquals(Age.whichIsOlder("1986-04-25", "1986-04-25"), "same dates");
+		assertEquals(
+			Age.whichIsOlder("1986-04-25", "1986-04-25"),
+			"Les dates sont similaires.",
+		);
 	},
 });

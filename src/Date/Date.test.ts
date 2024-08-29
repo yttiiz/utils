@@ -8,6 +8,10 @@ Deno.test({
 			DateFormatter.display({ date: 1724620845901 }),
 			"25 août 2024 à 23:20",
 		);
+		assertEquals(
+			DateFormatter.display({ date: 1724620845901, locale: "en-EN" }),
+			"Aug 25, 2024, 11:20 PM",
+		);
 	},
 });
 

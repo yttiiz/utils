@@ -34,3 +34,17 @@ Deno.test({
 		);
 	},
 });
+
+Deno.test({
+	name: "DateFormatter.create :",
+	fn() {
+		assertEquals(
+			typeof DateFormatter.create(),
+			"object",
+		);
+		assertEquals(
+			Object.keys(DateFormatter.create()),
+			["year", "month", "day"],
+		);
+	},
+});

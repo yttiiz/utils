@@ -31,9 +31,11 @@ export class DateFormatter {
 	 * Display date using `Intl` object.
 	 * @param {DisplayDateType} details object details
 	 */
-	public static display(
-		{ date, style = "long", locale = "fr-FR" }: DisplayDateType,
-	): string {
+	public static display({
+		date,
+		style = "long",
+		locale = "fr-FR",
+	}: DisplayDateType): string {
 		date = date ? date : new Date();
 		return new Intl.DateTimeFormat(
 			locale,
@@ -45,5 +47,24 @@ export class DateFormatter {
 		)
 			.format(date)
 			.replace(",", locale === "fr-FR" ? " à" : ",");
+	}
+
+	/**
+	 * Returns an object with current date details.
+	 * @returns object containing 3 keys: 'year', 'month', 'day'.
+	 */
+	public static create(): {
+		year: number;
+		month: string | number;
+		day: string | number;
+	} {
+		const now = new Date();
+		return {
+			year: now.getFullYear(),
+			month: now.getMonth() + 1 < 10
+				? `0${now.getMonth() + 1}`
+				: now.getMonth() + 1,
+			day: now.getDate() < 10 ? `0${now.getDate()}` : now.getDate(),
+		};
 	}
 }

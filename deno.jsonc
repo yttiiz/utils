@@ -1,7 +1,7 @@
 {
 	"name": "@yttiiz/utils",
 	"license": "MIT",
-	"version": "0.1.80",
+	"version": "0.1.90",
 	"exports": "./src/index.ts",
 	"lock": false,
 	"imports": {
@@ -15,7 +15,7 @@
 	"tasks": {
 		"load": "deno cache src/deps.ts",
 		"cache:reload": "deno cache --reload ./**/*.ts",
-		"test": "deno test --no-check --allow-read ./**/*.test.ts",
+		"test": "deno test --no-check --allow-read  --allow-net ./**/*.test.ts",
 		"lint-fmt": "deno lint && deno fmt --check",
 		"fmt": "deno fmt"
 	},

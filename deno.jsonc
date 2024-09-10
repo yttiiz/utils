@@ -15,7 +15,7 @@
 	"tasks": {
 		"load": "deno cache src/deps.ts",
 		"cache:reload": "deno cache --reload ./**/*.ts",
-		"test": "deno test --no-check --allow-read ./**/*.test.ts",
+		"test": "deno test --no-check --allow-read  --allow-net ./**/*.test.ts",
 		"lint-fmt": "deno lint && deno fmt --check",
 		"fmt": "deno fmt"
 	},

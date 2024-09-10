@@ -31,7 +31,7 @@ export * from "./Age/mod.ts";
  * import { Fetcher } from "@yttiiz/utils";
  *
  * const response = await Fetcher.getData("http://my-api-url.com");
- * 
+ *
  * if (response.ok) {
  *   console.log(response.data) // { key: value }
  * }

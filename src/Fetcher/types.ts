@@ -27,3 +27,5 @@ export type ErrorResponseType = {
 	code: number;
 	message: string;
 };
+
+export type PlatformType = "next" | "nuxt" | "standard";

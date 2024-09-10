@@ -1,6 +1,7 @@
 import type {
 	ErrorResponseType,
 	FetcherParamaterType,
+	PlatformType,
 	SuccessResponseType,
 } from "./types.ts";
 
@@ -28,8 +29,9 @@ export class Fetcher {
 	public static async postData(
 		url: string,
 		data: string | Record<string, string> = {},
+		platform: PlatformType = "standard",
 	): Promise<SuccessResponseType | ErrorResponseType> {
-		return await Fetcher.fetchData({ url, data, method: "POST" });
+		return await Fetcher.fetchData({ url, data, method: "POST", platform });
 	}
 
 	/**
@@ -40,8 +42,9 @@ export class Fetcher {
 	public static async putData(
 		url: string,
 		data: string | Record<string, string> = {},
+		platform: PlatformType = "standard",
 	): Promise<SuccessResponseType | ErrorResponseType> {
-		return await Fetcher.fetchData({ url, data, method: "PUT" });
+		return await Fetcher.fetchData({ url, data, method: "PUT", platform });
 	}
 
 	/**
@@ -52,8 +55,9 @@ export class Fetcher {
 	public static async deleteData(
 		url: string,
 		data: string | Record<string, string> = {},
+		platform: PlatformType = "standard",
 	): Promise<SuccessResponseType | ErrorResponseType> {
-		return await Fetcher.fetchData({ url, data, method: "DELETE" });
+		return await Fetcher.fetchData({ url, data, method: "DELETE", platform });
 	}
 
 	/**
@@ -65,7 +69,10 @@ export class Fetcher {
 		data,
 		method = "GET",
 		contentType = "application/json",
-	}: FetcherParamaterType): Promise<SuccessResponseType | ErrorResponseType> {
+		platform,
+	}: FetcherParamaterType & {
+		platform?: PlatformType;
+	}): Promise<SuccessResponseType | ErrorResponseType> {
 		const opts: RequestInit = {
 			method,
 			mode: "cors",
@@ -84,34 +91,47 @@ export class Fetcher {
 			if (method === "GET" || method === "HEAD") {
 				data
 					? (response = await fetch(
-						url + "?" + new URLSearchParams(data),
-						opts,
-					))
+							url + "?" + new URLSearchParams(data),
+							opts,
+					  ))
 					: (response = await fetch(url, opts));
 			} else {
-				// Prevent TypeError: Failed to parse body as FormData.
-				delete opts["headers"];
-				const formData = new FormData();
-				formData.append(
-					"value",
-					typeof data === "string" ? data : JSON.stringify(data),
-				);
-				opts["body"] = formData;
+				// According to the platform, the body has to be convert in a FormData.
+				switch(platform) {
+					case "next":
+					case "nuxt": {
+						// Prevent TypeError (in Nextjs): Failed to parse body as FormData.
+						delete opts["headers"];
+
+						const formData = new FormData();
+						formData.append(
+							"value",
+							typeof data === "string" ? data : JSON.stringify(data),
+						);
+						opts["body"] = formData;
+						break;
+					}
+
+					case "standard": {
+						opts["body"] = typeof data === "string" ? data : JSON.stringify(data);
+						break;
+					}
+				}
 
 				response = await fetch(url, opts);
 			}
 
 			return response.ok
 				? {
-					ok: true,
-					code: response.status,
-					data: await response.json(),
-				}
+						ok: true,
+						code: response.status,
+						data: await response.json(),
+				  }
 				: {
-					ok: false,
-					code: response.status,
-					message: response.statusText,
-				};
+						ok: false,
+						code: response.status,
+						message: response.statusText,
+				  };
 		} catch (_) {
 			return {
 				ok: false,

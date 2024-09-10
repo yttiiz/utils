@@ -1,7 +1,7 @@
 {
 	"name": "@yttiiz/utils",
 	"license": "MIT",
-	"version": "0.1.90",
+	"version": "0.1.91",
 	"exports": "./src/index.ts",
 	"lock": false,
 	"imports": {

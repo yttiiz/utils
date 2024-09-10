@@ -2,7 +2,7 @@
 
 [![JSR](https://jsr.io/badges/@yttiiz/utils)](https://jsr.io/@yttiiz/utils)
 
-This is an **utility** toolkit that provides out of the box **classes**, to handle common software development tasks.
+This is an **utility** toolkit that provides **classes**, out of the box, to handle common software development tasks.
 
 ## Installation
 

@@ -91,16 +91,16 @@ export class Fetcher {
 			if (method === "GET" || method === "HEAD") {
 				data
 					? (response = await fetch(
-							url + "?" + new URLSearchParams(data),
-							opts,
-					  ))
+						url + "?" + new URLSearchParams(data),
+						opts,
+					))
 					: (response = await fetch(url, opts));
 			} else {
 				// According to the platform, the body has to be convert in a FormData.
-				switch(platform) {
+				switch (platform) {
 					case "next":
 					case "nuxt": {
-						// Prevent TypeError (in Nextjs): Failed to parse body as FormData.
+						// Prevent TypeError (in Nextjs): "Failed to parse body as FormData".
 						delete opts["headers"];
 
 						const formData = new FormData();
@@ -113,7 +113,9 @@ export class Fetcher {
 					}
 
 					case "standard": {
-						opts["body"] = typeof data === "string" ? data : JSON.stringify(data);
+						opts["body"] = typeof data === "string"
+							? data
+							: JSON.stringify(data);
 						break;
 					}
 				}
@@ -123,15 +125,15 @@ export class Fetcher {
 
 			return response.ok
 				? {
-						ok: true,
-						code: response.status,
-						data: await response.json(),
-				  }
+					ok: true,
+					code: response.status,
+					data: await response.json(),
+				}
 				: {
-						ok: false,
-						code: response.status,
-						message: response.statusText,
-				  };
+					ok: false,
+					code: response.status,
+					message: response.statusText,
+				};
 		} catch (_) {
 			return {
 				ok: false,

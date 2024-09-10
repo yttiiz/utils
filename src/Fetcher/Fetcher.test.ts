@@ -14,3 +14,18 @@ Deno.test({
 		}
 	},
 });
+
+Deno.test({
+	name: "Fetcher.postData :",
+	async fn() {
+		const response = await Fetcher.postData(
+			"https://dummyjson.com/posts/add",
+			{ title: "Clean code by Crowler", userId: "5" },
+		);
+
+		if (response.ok) {
+			assertEquals("Clean code by Crowler", response.data["title"]);
+			assertEquals("5", response.data["userId"]);
+		}
+	},
+});

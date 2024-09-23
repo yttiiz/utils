@@ -68,19 +68,13 @@ export class Fetcher {
 		url,
 		data,
 		method = "GET",
-		contentType = "application/json",
 		platform,
-	}: FetcherParamaterType & {
-		platform?: PlatformType;
-	}): Promise<SuccessResponseType | ErrorResponseType> {
+	}: FetcherParamaterType): Promise<SuccessResponseType | ErrorResponseType> {
 		const opts: RequestInit = {
 			method,
 			mode: "cors",
 			cache: "no-cache",
 			credentials: "same-origin",
-			headers: {
-				"Content-Type": contentType,
-			},
 			redirect: "follow",
 			referrerPolicy: "no-referrer",
 		};
@@ -100,9 +94,6 @@ export class Fetcher {
 				switch (platform) {
 					case "next":
 					case "nuxt": {
-						// Prevent TypeError (in Nextjs): "Failed to parse body as FormData".
-						delete opts["headers"];
-
 						const formData = new FormData();
 						formData.append(
 							"value",
@@ -113,6 +104,7 @@ export class Fetcher {
 					}
 
 					case "standard": {
+						opts["headers"] = { "Content-Type": "application/json" };
 						opts["body"] = typeof data === "string"
 							? data
 							: JSON.stringify(data);

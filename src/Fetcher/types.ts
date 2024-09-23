@@ -11,7 +11,7 @@ export type FetcherParamaterType = {
 	url: string;
 	data?: string | Record<string, string>;
 	method?: MethodType;
-	contentType?: string;
+	platform?: PlatformType;
 };
 
 /**

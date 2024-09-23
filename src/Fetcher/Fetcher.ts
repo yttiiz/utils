@@ -57,7 +57,12 @@ export class Fetcher {
 		data: string | Record<string, string> = {},
 		platform: PlatformType = "standard",
 	): Promise<SuccessResponseType<T> | ErrorResponseType> {
-		return await Fetcher.fetchData<T>({ url, data, method: "DELETE", platform });
+		return await Fetcher.fetchData<T>({
+			url,
+			data,
+			method: "DELETE",
+			platform,
+		});
 	}
 
 	/**
@@ -69,7 +74,9 @@ export class Fetcher {
 		data,
 		method = "GET",
 		platform,
-	}: FetcherParamaterType): Promise<SuccessResponseType<T> | ErrorResponseType> {
+	}: FetcherParamaterType): Promise<
+		SuccessResponseType<T> | ErrorResponseType
+	> {
 		const opts: RequestInit = {
 			method,
 			mode: "cors",

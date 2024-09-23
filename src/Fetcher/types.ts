@@ -11,16 +11,16 @@ export type FetcherParamaterType = {
 	url: string;
 	data?: string | Record<string, string>;
 	method?: MethodType;
-	contentType?: string;
+	platform?: PlatformType;
 };
 
 /**
  * ReturnType of `Fetcher.fetchData` in case of success.
  */
-export type SuccessResponseType = {
+export type SuccessResponseType<T = Record<string, string>> = {
 	ok: true;
 	code: number;
-	data: Record<string, string>;
+	data: T;
 };
 
 /**

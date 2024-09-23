@@ -14,11 +14,11 @@ export class Fetcher {
 	 * @param url Api endpoint.
 	 * @param searchParams Additional details to fetch data.
 	 */
-	public static async getData(
+	public static async getData<T>(
 		url: string,
 		searchParams?: string,
-	): Promise<SuccessResponseType | ErrorResponseType> {
-		return await Fetcher.fetchData({ url, data: searchParams });
+	): Promise<SuccessResponseType<T> | ErrorResponseType> {
+		return await Fetcher.fetchData<T>({ url, data: searchParams });
 	}
 
 	/**
@@ -26,12 +26,12 @@ export class Fetcher {
 	 * @param url Api endpoint.
 	 * @param data Body of the request.
 	 */
-	public static async postData(
+	public static async postData<T>(
 		url: string,
 		data: string | Record<string, string> = {},
 		platform: PlatformType = "standard",
-	): Promise<SuccessResponseType | ErrorResponseType> {
-		return await Fetcher.fetchData({ url, data, method: "POST", platform });
+	): Promise<SuccessResponseType<T> | ErrorResponseType> {
+		return await Fetcher.fetchData<T>({ url, data, method: "POST", platform });
 	}
 
 	/**
@@ -39,12 +39,12 @@ export class Fetcher {
 	 * @param url Api endpoint.
 	 * @param data Body of the request.
 	 */
-	public static async putData(
+	public static async putData<T>(
 		url: string,
 		data: string | Record<string, string> = {},
 		platform: PlatformType = "standard",
-	): Promise<SuccessResponseType | ErrorResponseType> {
-		return await Fetcher.fetchData({ url, data, method: "PUT", platform });
+	): Promise<SuccessResponseType<T> | ErrorResponseType> {
+		return await Fetcher.fetchData<T>({ url, data, method: "PUT", platform });
 	}
 
 	/**
@@ -52,35 +52,36 @@ export class Fetcher {
 	 * @param url Api endpoint.
 	 * @param data Body of the request.
 	 */
-	public static async deleteData(
+	public static async deleteData<T>(
 		url: string,
 		data: string | Record<string, string> = {},
 		platform: PlatformType = "standard",
-	): Promise<SuccessResponseType | ErrorResponseType> {
-		return await Fetcher.fetchData({ url, data, method: "DELETE", platform });
+	): Promise<SuccessResponseType<T> | ErrorResponseType> {
+		return await Fetcher.fetchData<T>({
+			url,
+			data,
+			method: "DELETE",
+			platform,
+		});
 	}
 
 	/**
 	 * Creates a fetch request according to the object parameter, and a pre-define fetch options.
 	 * @param {Object} params
 	 */
-	private static async fetchData({
+	private static async fetchData<T>({
 		url,
 		data,
 		method = "GET",
-		contentType = "application/json",
 		platform,
-	}: FetcherParamaterType & {
-		platform?: PlatformType;
-	}): Promise<SuccessResponseType | ErrorResponseType> {
+	}: FetcherParamaterType): Promise<
+		SuccessResponseType<T> | ErrorResponseType
+	> {
 		const opts: RequestInit = {
 			method,
 			mode: "cors",
 			cache: "no-cache",
 			credentials: "same-origin",
-			headers: {
-				"Content-Type": contentType,
-			},
 			redirect: "follow",
 			referrerPolicy: "no-referrer",
 		};
@@ -100,9 +101,6 @@ export class Fetcher {
 				switch (platform) {
 					case "next":
 					case "nuxt": {
-						// Prevent TypeError (in Nextjs): "Failed to parse body as FormData".
-						delete opts["headers"];
-
 						const formData = new FormData();
 						formData.append(
 							"value",
@@ -113,6 +111,7 @@ export class Fetcher {
 					}
 
 					case "standard": {
+						opts["headers"] = { "Content-Type": "application/json" };
 						opts["body"] = typeof data === "string"
 							? data
 							: JSON.stringify(data);

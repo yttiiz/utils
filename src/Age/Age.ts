@@ -10,9 +10,7 @@ export class Age {
 	 */
 	public static get(date: DateType): number {
 		const year = new Date(Date.now() - new Date(date).getTime()).getFullYear();
-		return year === 1969
-			? 0
-			: year - 1970;
+		return year === 1969 ? 0 : year - 1970;
 	}
 
 	/**

@@ -9,8 +9,12 @@ export class Age {
 	 * @param date
 	 */
 	public static get(date: DateType): number {
-		return new Date(Date.now() - new Date(date).getTime()).getFullYear() - 1970;
+		const year = new Date(Date.now() - new Date(date).getTime()).getFullYear();
+		return year === 1969
+			? 0
+			: year - 1970;
 	}
+
 	/**
 	 * Returns age with years according to the given `date` parameter.
 	 * @param date

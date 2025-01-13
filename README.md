@@ -9,7 +9,7 @@ This is an **utility** toolkit that provides **classes**, out of the box, to han
 Run this command :
 
 ```
-pnpm i @yttiiz/utils
+pnpx jsr add @yttiiz/utils
 ```
 
 ## Import

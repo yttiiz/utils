@@ -4,14 +4,16 @@ export type MethodType = "GET" | "HEAD" | "POST" | "PUT" | "PATCH" | "DELETE";
 /** List of platforms types. */
 export type PlatformType = "next" | "nuxt" | "standard";
 
+export type DataType =
+	| string
+	| Record<string, string | number | Record<string, string | number>>;
+
 /**
  * `Fetcher.fetchData` type parameter.
  */
 export type FetcherParamaterType = {
 	url: string;
-	data?:
-		| string
-		| Record<string, string | number | Record<string, string | number>>;
+	data?: DataType;
 	method?: MethodType;
 	platform?: PlatformType;
 };

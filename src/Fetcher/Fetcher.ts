@@ -1,4 +1,5 @@
 import type {
+	DataType,
 	ErrorResponseType,
 	FetcherParamaterType,
 	PlatformType,
@@ -28,7 +29,7 @@ export class Fetcher {
 	 */
 	public static async postData<T>(
 		url: string,
-		data: string | Record<string, string> = {},
+		data: DataType = {},
 		platform: PlatformType = "standard",
 	): Promise<SuccessResponseType<T> | ErrorResponseType> {
 		return await Fetcher.fetchData<T>({ url, data, method: "POST", platform });
@@ -41,7 +42,7 @@ export class Fetcher {
 	 */
 	public static async putData<T>(
 		url: string,
-		data: string | Record<string, string> = {},
+		data: DataType = {},
 		platform: PlatformType = "standard",
 	): Promise<SuccessResponseType<T> | ErrorResponseType> {
 		return await Fetcher.fetchData<T>({ url, data, method: "PUT", platform });
@@ -54,7 +55,7 @@ export class Fetcher {
 	 */
 	public static async deleteData<T>(
 		url: string,
-		data: string | Record<string, string> = {},
+		data: DataType = {},
 		platform: PlatformType = "standard",
 	): Promise<SuccessResponseType<T> | ErrorResponseType> {
 		return await Fetcher.fetchData<T>({

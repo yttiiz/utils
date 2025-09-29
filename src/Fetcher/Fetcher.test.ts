@@ -1,10 +1,26 @@
 import { assertEquals } from "@deps";
 import { Fetcher } from "./mod.ts";
 
+// Set DummyJson types
+type UserType = {
+	id: number;
+	firstName: string;
+	lastName: string;
+	age: number;
+	email: string;
+	phone: string;
+};
+
+type PostType = {
+	id: number;
+	title: string;
+	userId: string;
+};
+
 Deno.test({
 	name: "Fetcher.getData :",
 	async fn() {
-		const response = await Fetcher.getData(
+		const response = await Fetcher.getData<UserType>(
 			"https://dummyjson.com/users/1",
 		);
 
@@ -18,7 +34,7 @@ Deno.test({
 Deno.test({
 	name: "Fetcher.postData :",
 	async fn() {
-		const response = await Fetcher.postData(
+		const response = await Fetcher.postData<PostType>(
 			"https://dummyjson.com/posts/add",
 			{ title: "Clean code by Crowler", userId: "5" },
 		);

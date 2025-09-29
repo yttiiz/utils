@@ -90,7 +90,7 @@ export class Fetcher {
 
 		try {
 			if (method === "GET" || method === "HEAD") {
-				data
+				data && typeof data === "string"
 					? (response = await fetch(
 						url + "?" + new URLSearchParams(data),
 						opts,

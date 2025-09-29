@@ -9,7 +9,9 @@ export type PlatformType = "next" | "nuxt" | "standard";
  */
 export type FetcherParamaterType = {
 	url: string;
-	data?: string | Record<string, string>;
+	data?:
+		| string
+		| Record<string, string | number | Record<string, string | number>>;
 	method?: MethodType;
 	platform?: PlatformType;
 };

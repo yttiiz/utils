@@ -88,10 +88,11 @@ export class Fetcher {
 		};
 
 		let response: Response;
+		const isDataIsString = typeof data === "string";
 
 		try {
 			if (method === "GET" || method === "HEAD") {
-				data && typeof data === "string"
+				data && isDataIsString
 					? (response = await fetch(
 						url + "?" + new URLSearchParams(data),
 						opts,
@@ -105,7 +106,7 @@ export class Fetcher {
 						const formData = new FormData();
 						formData.append(
 							"value",
-							typeof data === "string" ? data : JSON.stringify(data),
+							isDataIsString ? data : JSON.stringify(data),
 						);
 						opts["body"] = formData;
 						break;
@@ -113,7 +114,7 @@ export class Fetcher {
 
 					case "standard": {
 						opts["headers"] = { "Content-Type": "application/json" };
-						opts["body"] = typeof data === "string"
+						opts["body"] = isDataIsString || data instanceof FormData
 							? data
 							: JSON.stringify(data);
 						break;

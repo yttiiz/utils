@@ -6,7 +6,8 @@ export type PlatformType = "next" | "nuxt" | "standard";
 
 export type DataType =
 	| string
-	| Record<string, string | number | Record<string, string | number>>;
+	| Record<string, string | number | Record<string, string | number>>
+	| FormData;
 
 /**
  * `Fetcher.fetchData` type parameter.

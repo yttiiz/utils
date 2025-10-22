@@ -113,8 +113,11 @@ export class Fetcher {
 					}
 
 					case "standard": {
-						opts["headers"] = { "Content-Type": "application/json" };
-						opts["body"] = isDataIsString || data instanceof FormData
+						const isDataIsFormData = data instanceof FormData;
+						if (!isDataIsFormData) {
+							opts["headers"] = { "Content-Type": "application/json" };
+						}
+						opts["body"] = isDataIsString || isDataIsFormData
 							? data
 							: JSON.stringify(data);
 						break;
@@ -133,7 +136,7 @@ export class Fetcher {
 				: {
 					ok: false,
 					code: response.status,
-					message: response.statusText,
+					message: await response.text(),
 				};
 		} catch (_) {
 			return {

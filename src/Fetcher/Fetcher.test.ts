@@ -11,10 +11,15 @@ type UserType = {
 	phone: string;
 };
 
-type PostType = {
-	id: number;
+type IdsType = { id: number; userId: string };
+
+type PostType = IdsType & {
 	title: string;
-	userId: string;
+};
+
+type TodoType = IdsType & {
+	todo: string;
+	completed: string;
 };
 
 Deno.test({
@@ -41,6 +46,25 @@ Deno.test({
 
 		if (response.ok) {
 			assertEquals("Clean code by Crowler", response.data["title"]);
+			assertEquals("5", response.data["userId"]);
+		}
+	},
+});
+
+Deno.test({
+	name: "Fetcher.postData (with FormData):",
+	async fn() {
+		const data = new FormData();
+		data.append("todo", "Use DummyJSON in the project");
+		data.append("completed", "false");
+		data.append("userId", "5");
+
+		const response = await Fetcher.postData<TodoType>(
+			"https://dummyjson.com/todos/add",
+			data,
+		);
+
+		if (response.ok) {
 			assertEquals("5", response.data["userId"]);
 		}
 	},
